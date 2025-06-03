@@ -2,18 +2,26 @@
 
 import Header from '@/components/layout/Header';
 import SparkleBackground from '@/components/effects/SparkleBackground';
+import Abstract3DScene from '@/components/effects/Abstract3DScene';
+import ExperienceSection from '@/components/sections/ExperienceSection';
+import SkillsSection from '@/components/sections/SkillsSection';
+import CertificatesSection from '@/components/sections/CertificatesSection';
+import ProjectsSection from '@/components/sections/ProjectsSection';
+import ContactSection from '@/components/sections/ContactSection';
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const summaryText = `Bringing over a decade of expertise in full-stack software development, I specialize in crafting innovative and secure web applications. From architectural design to seamless deployment, I deliver high-quality solutions that drive business success. Let's build something remarkable together.`;
+
   return (
     <main className="relative min-h-screen">
       <SparkleBackground />
       <Header />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center">
+      <section id="about" className="relative pt-24 pb-16 px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12 min-h-screen">
+        <div className="mx-auto lg:w-4/5 flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
+          <div className="lg:w-1/2 text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -30,10 +38,18 @@ export default function Home() {
             >
               Frontend Developer & Creative Technologist
             </motion.p>
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-6 text-lg leading-8 text-gray-700 dark:text-gray-200"
+            >
+              {summaryText}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
               className="mt-10 flex items-center justify-center gap-x-6"
             >
               <a
@@ -47,28 +63,30 @@ export default function Home() {
               </a>
             </motion.div>
           </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="w-full lg:w-1/2 h-80 lg:h-[60vh] relative"
+          >
+            <Abstract3DScene />
+          </motion.div>
         </div>
       </section>
 
-      {/* Projects Section - Placeholder */}
-      <section id="projects" className="py-24 px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Featured Projects
-          </h2>
-          {/* Project grid will go here */}
-        </div>
-      </section>
+      <ExperienceSection />
 
-      {/* Contact Section - Placeholder */}
-      <section id="contact" className="py-24 px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Get in Touch
-          </h2>
-          {/* Contact form will go here */}
-        </div>
-      </section>
+      {/* Skills Section */}
+      <SkillsSection />
+
+      {/* Certificates Section */}
+      <CertificatesSection />
+
+      {/* Projects Section */}
+      <ProjectsSection />
+
+      {/* Contact Section */}
+      <ContactSection />
     </main>
   );
 }

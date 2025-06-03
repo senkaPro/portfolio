@@ -8,7 +8,7 @@ import { random } from 'maath';
 
 function Sparkles() {
   const ref = useRef<THREE.Points>(null);
-  const count = 5000;
+  const count = 4000;
   
   const positions = useMemo(() => {
     const positions = new Float32Array(count * 3);
@@ -18,8 +18,8 @@ function Sparkles() {
 
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.x -= delta / 10;
-      ref.current.rotation.y -= delta / 15;
+      ref.current.rotation.x -= delta / 45;
+      ref.current.rotation.y -= delta / 60;
     }
   });
 
