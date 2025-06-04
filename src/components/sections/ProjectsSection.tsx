@@ -136,7 +136,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-24 px-6 lg:px-8">
       <div className="mx-auto lg:w-4/5">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-12 text-center">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-12 text-center bg-gradient-to-r from-purple-500 to-blue-300 text-transparent bg-clip-text">
           Featured Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 mb-24">
@@ -181,7 +181,7 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-12 text-center">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-12 text-center bg-gradient-to-r from-purple-500 to-blue-300 text-transparent bg-clip-text">
           Projects under NDA
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">

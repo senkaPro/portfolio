@@ -2,22 +2,26 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navigation = [
   { name: 'About Me', href: '/#about' },
-  { name: 'Work Experience', href: '/#experience' },
+  { name: 'Projects', href: '/#projects' },
   { name: 'Skills', href: '/#skills' },
   { name: 'Certificates', href: '/#certificates' },
-  { name: 'Projects', href: '/#projects' },
+  { name: 'Work Experience', href: '/#experience' },
   { name: 'Contact', href: '/#contact' },
-  { name: 'Blog', href: '/blog' },
+  // { name: 'Blog', href: '/blog' },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+  const router = useRouter();
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -29,6 +33,55 @@ export default function Header() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navigation.map(item => {
+        const id = item.href.substring(item.href.indexOf('#') + 1);
+        return document.getElementById(id);
+      }).filter(Boolean) as HTMLElement[];
+
+      const currentScrollPos = window.scrollY + 100;
+
+      let foundActive = false;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        
+        if (section && section.offsetTop <= currentScrollPos) {
+          setActiveSection(section.id);
+          foundActive = true;
+          break;
+        }
+      }
+
+      if (!foundActive) {
+        setActiveSection(''); // Clear active section if no section is in view
+      }
+
+      // Additional check for contact section when at the very bottom
+      if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
+        setActiveSection('contact');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Call on mount to set initial active section
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [pathname]);
+
+  const handleNavLinkClick = (href: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    const id = href.substring(href.indexOf('#') + 1);
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - (headerRef.current?.offsetHeight || 0),
+        behavior: 'smooth',
+      });
+      router.push(href); // Update the URL in the browser
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header 
@@ -98,7 +151,8 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+              onClick={(e) => handleNavLinkClick(item.href, e)}
+              className={`text-sm font-semibold leading-6 ${activeSection === item.href.substring(item.href.indexOf('#') + 1) ? 'text-purple-600 dark:text-purple-400' : 'text-gray-900 dark:text-white'} hover:text-purple-600 dark:hover:text-purple-400 transition-colors`}
             >
               {item.name}
             </Link>
@@ -130,8 +184,8 @@ export default function Header() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800"
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={(e) => handleNavLinkClick(item.href, e)}
+                      className={`block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${activeSection === item.href.substring(item.href.indexOf('#') + 1) ? 'text-purple-600 dark:text-purple-400' : 'text-gray-900 dark:text-white'} hover:bg-gray-50 dark:hover:bg-gray-800`}
                     >
                       {item.name}
                     </Link>

@@ -114,7 +114,7 @@ export default function ExperienceSection() {
   return (
     <section id="experience" className="py-24 px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
       <div className="mx-auto lg:w-4/5">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-12 text-center">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-12 text-center bg-gradient-to-r from-purple-500 to-blue-300 text-transparent bg-clip-text">
           Work Experience
         </h2>
         <div className="space-y-16">

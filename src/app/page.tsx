@@ -8,6 +8,7 @@ import SkillsSection from '@/components/sections/SkillsSection';
 import CertificatesSection from '@/components/sections/CertificatesSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import ContactSection from '@/components/sections/ContactSection';
+import SkillsBelt from '@/components/sections/SkillsBelt';
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -19,14 +20,17 @@ export default function Home() {
       <Header />
       
       {/* Hero Section */}
-      <section id="about" className="relative pt-24 pb-16 px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12 min-h-screen">
-        <div className="mx-auto lg:w-4/5 flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
+      <section id="about" className="relative my-24 pt-24 pb-16 px-6 lg:px-8 flex items-center justify-center">
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+          <Abstract3DScene position={[2.5, 2, -1.5]} />
+        </div>
+        <div className="mx-auto lg:w-4/5 flex flex-col lg:flex-row items-center justify-between gap-12 w-full relative z-10">
           <div className="lg:w-1/2 text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl"
+              className="text-4xl font-bold tracking-tight sm:text-6xl bg-gradient-to-r from-purple-500 to-blue-300 text-transparent bg-clip-text"
             >
               Senat Selimoski
             </motion.h1>
@@ -63,18 +67,13 @@ export default function Home() {
               </a>
             </motion.div>
           </div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="w-full lg:w-1/2 h-80 lg:h-[60vh] relative"
-          >
-            <Abstract3DScene />
-          </motion.div>
         </div>
       </section>
 
-      <ExperienceSection />
+      <SkillsBelt />
+
+      {/* Projects Section */}
+      <ProjectsSection />
 
       {/* Skills Section */}
       <SkillsSection />
@@ -82,11 +81,15 @@ export default function Home() {
       {/* Certificates Section */}
       <CertificatesSection />
 
-      {/* Projects Section */}
-      <ProjectsSection />
+      {/* Work Experience Section */}
+      <ExperienceSection />
 
       {/* Contact Section */}
       <ContactSection />
+
+      <footer className="relative py-6 text-center text-white dark:text-gray-400 text-sm" style={{ background: 'linear-gradient(90deg, rgba(25, 25, 112, 0.4), rgba(75, 0, 130, 0.5), rgba(25, 25, 112, 0.4))', opacity: 0.8 }}>
+        &copy; {new Date().getFullYear()} Senat Selimoski. All rights reserved.
+      </footer>
     </main>
   );
 }
