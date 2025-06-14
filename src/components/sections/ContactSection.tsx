@@ -22,17 +22,36 @@ export default function ContactSection() {
     setIsSubmitting(true);
     setSubmitMessage(null);
 
-    // In a real application, you would send this data to a backend API.
-    // For now, we'll simulate a submission.
-    console.log('Form Data Submitted:', formData);
-
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500)); 
-      setSubmitMessage({ type: 'success', text: 'Thank you for your message! I will get back to you soon.' });
-      setFormData({ name: '', email: '', message: '' }); // Clear form
+      // Using Formspree - completely free service
+      const response = await fetch('https://formspree.io/f/xovwwjwy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New Contact Form Message from ${formData.name}`,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitMessage({ 
+          type: 'success', 
+          text: 'Thank you for your message! I will get back to you soon.' 
+        });
+        setFormData({ name: '', email: '', message: '' }); // Clear form
+      } else {
+        throw new Error('Failed to send message');
+      }
     } catch (error) {
-      setSubmitMessage({ type: 'error', text: 'Oops! Something went wrong. Please try again later.' });
+      console.error('Form submission failed:', error);
+      setSubmitMessage({ 
+        type: 'error', 
+        text: 'Oops! Something went wrong. Please try again later.' 
+      });
     } finally {
       setIsSubmitting(false);
     }

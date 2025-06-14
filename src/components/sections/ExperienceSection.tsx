@@ -1,4 +1,10 @@
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
+import { FaBriefcase } from 'react-icons/fa';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 
 interface Experience {
   title: string;
@@ -114,29 +120,96 @@ export default function ExperienceSection() {
   return (
     <section id="experience" className="py-24 px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
       <div className="mx-auto lg:w-4/5">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-12 text-center bg-gradient-to-r from-purple-500 to-blue-300 text-transparent bg-clip-text">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-16 text-center bg-gradient-to-r from-purple-500 to-blue-300 text-transparent bg-clip-text">
           Work Experience
         </h2>
-        <div className="space-y-16">
+        
+        <VerticalTimeline 
+          lineColor="linear-gradient(to bottom, #8b5cf6, #3b82f6, #8b5cf6)"
+          className="custom-timeline"
+        >
           {experiences.map((exp, index) => (
-            <div key={index} className="flex flex-col lg:flex-row items-start lg:space-x-8">
-              <div className="lg:w-1/4 text-gray-600 dark:text-gray-400 text-sm mb-4 lg:mb-0">
-                <p className="font-semibold">{exp.dates}</p>
-                <p>{exp.location}</p>
-              </div>
-              <div className="lg:w-3/4">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{exp.title}</h3>
-                <p className="text-purple-600 dark:text-purple-400 mb-2">{exp.company}</p>
-                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+            <VerticalTimelineElement
+              key={index}
+              className="vertical-timeline-element--work"
+              contentStyle={{ 
+                background: 'white',
+                color: '#1f2937',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                borderRadius: '12px',
+                border: 'none'
+              }}
+              contentArrowStyle={{ 
+                borderRight: '7px solid white',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+              }}
+              date={exp.dates}
+              dateClassName="text-purple-600 dark:text-purple-400 font-semibold"
+              iconStyle={{ 
+                background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)',
+                color: '#fff',
+                boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
+              }}
+              icon={<FaBriefcase />}
+            >
+              <motion.div
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {exp.title}
+                </h3>
+                <div className="flex items-center mb-3">
+                  <p className="text-purple-600 dark:text-purple-400 font-semibold">{exp.company}</p>
+                  <span className="mx-2 text-gray-400">•</span>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">{exp.location}</p>
+                </div>
+                <ul className="space-y-2">
                   {exp.description.map((point, i) => (
-                    <li key={i}>{point}</li>
+                    <li key={i} className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed flex items-start">
+                      <span className="w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      {point}
+                    </li>
                   ))}
                 </ul>
-              </div>
-            </div>
+              </motion.div>
+            </VerticalTimelineElement>
           ))}
-        </div>
+        </VerticalTimeline>
       </div>
+      
+      <style jsx>{`
+        .custom-timeline .vertical-timeline-element {
+          margin-bottom: 2rem;
+        }
+        
+        .custom-timeline .vertical-timeline-element--work .vertical-timeline-element-content {
+          border-left: 4px solid #8b5cf6;
+        }
+        
+        .custom-timeline .vertical-timeline-element--work:hover {
+          transform: translateY(-2px);
+          transition: transform 0.3s ease;
+        }
+        
+        .custom-timeline .vertical-timeline-element-date {
+          font-weight: 600;
+          color: #8b5cf6;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+          .custom-timeline .vertical-timeline-element--work .vertical-timeline-element-content {
+            background: #374151 !important;
+            color: #f9fafb !important;
+          }
+          
+          .custom-timeline .vertical-timeline-element--work .vertical-timeline-element-content-arrow {
+            border-right: 7px solid #374151 !important;
+          }
+        }
+      `}</style>
     </section>
   );
 } 
