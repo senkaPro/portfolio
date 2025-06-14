@@ -9,6 +9,7 @@ import CertificatesSection from '@/components/sections/CertificatesSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import ContactSection from '@/components/sections/ContactSection';
 import SkillsBelt from '@/components/sections/SkillsBelt';
+import BackToTop from '@/components/layout/BackToTop';
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -90,6 +91,8 @@ export default function Home() {
       <footer className="relative py-6 text-center text-white dark:text-gray-400 text-sm" style={{ background: 'linear-gradient(90deg, rgba(25, 25, 112, 0.4), rgba(75, 0, 130, 0.5), rgba(25, 25, 112, 0.4))', opacity: 0.8 }}>
         &copy; {new Date().getFullYear()} Senat Selimoski. All rights reserved.
       </footer>
+      
+      <BackToTop />
     </main>
   );
 }
