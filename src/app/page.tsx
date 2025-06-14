@@ -12,7 +12,7 @@ import SkillsBelt from '@/components/sections/SkillsBelt';
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const summaryText = `Bringing over a decade of expertise in full-stack software development, I specialize in crafting innovative and secure web applications. From architectural design to seamless deployment, I deliver high-quality solutions that drive business success. Let's build something remarkable together.`;
+  const summaryText = `Senior full-stack developer with 10+ years of experience building scalable web applications and digital products. I specialize in React, Node.js, and cloud architecture, delivering high-performance solutions that drive business growth. From startups to enterprise clients, I bring ideas to life with clean code and exceptional user experiences.`;
 
   return (
     <main className="relative min-h-screen">
@@ -32,7 +32,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="text-4xl font-bold tracking-tight sm:text-6xl bg-gradient-to-r from-purple-500 to-blue-300 text-transparent bg-clip-text"
             >
-              Senat Selimoski
+              Crafting Intelligent Solutions for People & Technology
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -40,7 +40,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
             >
-              Frontend Developer & Creative Technologist
+              Full-Stack Solution Architect & Digital Innovation Specialist
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -58,12 +58,12 @@ export default function Home() {
             >
               <a
                 href="#projects"
-                className="rounded-md bg-purple-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                className="rounded-md bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
               >
-                View Projects
+                View Work
               </a>
-              <a href="#contact" className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
-                Contact Me <span aria-hidden="true">→</span>
+              <a href="#contact" className="text-sm font-semibold leading-6 text-gray-900 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300">
+                Get In Touch <span aria-hidden="true">→</span>
               </a>
             </motion.div>
           </div>
