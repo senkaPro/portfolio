@@ -31,7 +31,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-4xl font-bold tracking-tight sm:text-6xl bg-gradient-to-r from-purple-500 to-blue-300 text-transparent bg-clip-text"
+              className="pb-12 text-4xl font-bold tracking-tight sm:text-6xl bg-gradient-to-r from-purple-500 to-blue-300 text-transparent bg-clip-text"
             >
               Crafting Intelligent Solutions for People & Technology
             </motion.h1>
@@ -39,7 +39,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
+              className="text-lg leading-8 text-gray-600 dark:text-gray-300"
             >
               Full-Stack Solution Architect & Digital Innovation Specialist
             </motion.p>
