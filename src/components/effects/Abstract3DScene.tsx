@@ -3,7 +3,7 @@
 import React, { useRef, useMemo, useLayoutEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { BufferAttribute, BufferGeometry, LineBasicMaterial, LineSegments, Vector3 } from 'three';
+import { BufferAttribute, BufferGeometry, LineSegments } from 'three';
 
 interface ShapeConfig {
   position: [number, number, number];
@@ -85,14 +85,14 @@ function SpinningMesh({ position, color, rotationSpeed = 0.01 }: Omit<ShapeConfi
         let w = vertices4D[i + 3];
 
         // Rotate in XW plane
-        let tempX = x * cosXW - w * sinXW;
-        let tempW = x * sinXW + w * cosXW;
+        const tempX = x * cosXW - w * sinXW;
+        const tempW = x * sinXW + w * cosXW;
         x = tempX;
         w = tempW;
 
         // Rotate in YZ plane
-        let tempY = y * cosYZ - z * sinYZ;
-        let tempZ = y * sinYZ + z * cosYZ;
+        const tempY = y * cosYZ - z * sinYZ;
+        const tempZ = y * sinYZ + z * cosYZ;
         y = tempY;
         z = tempZ;
 
