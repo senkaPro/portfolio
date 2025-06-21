@@ -23,7 +23,7 @@ const projectsData: Project[] = [
       'Automated complex database migration tasks, significantly streamlining client operations.',
     ],
     technologies: ['Python', 'Django', 'Azure', 'PostgreSQL'],
-    link: '#', // Placeholder link
+    link: 'https://dobierp.com/', // Placeholder link
     imagePath: '/dobi.jpg',
   },
   {
@@ -50,7 +50,7 @@ const projectsData: Project[] = [
       'Configured CI/CD, file storage on Azure, caching with Redis, and scheduling for events.',
     ],
     technologies: ['NestJS', 'Python', 'Django', 'React', 'Azure', 'Redis', 'Swagger'],
-    link: '#', // Placeholder link
+    link: 'https://digitalesbuero.ch/', // Placeholder link
     imagePath: '/buro.png',
   },
   {
